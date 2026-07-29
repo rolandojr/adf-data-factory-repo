@@ -1,0 +1,25 @@
+{
+	"name": "pl_process_us",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"value": ""
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-07-29T16:45:31Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

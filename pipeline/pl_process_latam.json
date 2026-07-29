@@ -1,0 +1,37 @@
+{
+	"name": "pl_process_latam",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "message",
+					"value": {
+						"value": "@concat('Hello from pipeline process ', pipeline().parameters.region)",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"region": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"message": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-07-29T17:03:29Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,15 @@
+{
+	"name": "azdafaeu02",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "518b0262-71a3-4e76-9b53-65d4fbdf646b",
+		"tenantId": "f015638b-48c1-4f68-b8cc-4834dcd626a4"
+	}
+}

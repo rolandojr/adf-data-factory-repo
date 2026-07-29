@@ -1,0 +1,28 @@
+{
+	"name": "tg_on_csv_uploaded",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "plProcessEvents",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"FileName": "@triggerBody().fileName"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/dafaeu02/blobs/events",
+			"blobPathEndsWith": ".csv",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/b6d1efbe-75d0-48d0-bfbc-6012fa4345fe/resourceGroups/azfunction/providers/Microsoft.Storage/storageAccounts/azfunction81ca",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

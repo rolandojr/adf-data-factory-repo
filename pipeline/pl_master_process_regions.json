@@ -1,0 +1,117 @@
+{
+	"name": "pl_master_process_regions",
+	"properties": {
+		"activities": [
+			{
+				"name": "Switch1",
+				"type": "Switch",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"on": {
+						"value": "@toUpper(pipeline().parameters.region)",
+						"type": "Expression"
+					},
+					"cases": [
+						{
+							"value": "US",
+							"activities": [
+								{
+									"name": "pl_process_us",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"policy": {
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "pl_process_us",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true
+									}
+								}
+							]
+						},
+						{
+							"value": "LATAM",
+							"activities": [
+								{
+									"name": "pl_process_latam",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"policy": {
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "pl_process_latam",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"region": {
+												"value": "@toUpper(pipeline().parameters.region)",
+												"type": "Expression"
+											}
+										}
+									}
+								}
+							]
+						},
+						{
+							"value": "EU",
+							"activities": [
+								{
+									"name": "pl_process_eu",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"policy": {
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "pl_process_eu",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true
+									}
+								}
+							]
+						}
+					],
+					"defaultActivities": [
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"state": "Inactive",
+							"onInactiveMarkAs": "Succeeded",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "",
+								"value": ""
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"region": {
+				"type": "string",
+				"defaultValue": "LATAM"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-07-29T17:06:45Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

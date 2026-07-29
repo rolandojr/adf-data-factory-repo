@@ -1,0 +1,39 @@
+{
+	"name": "dsSqlVentas",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lsSqlMyFreeDb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "IdVenta",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Producto",
+				"type": "varchar"
+			},
+			{
+				"name": "Monto",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "fecha_registro",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Ventas"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

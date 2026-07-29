@@ -1,0 +1,24 @@
+{
+	"name": "lsSqlMyFreeDb",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "myfreesqldbservery.database.windows.net",
+			"database": "myFreeDB",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "rolando",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "lsAkvSensitiveData",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "db-password"
+			}
+		}
+	}
+}

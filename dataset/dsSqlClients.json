@@ -1,0 +1,43 @@
+{
+	"name": "dsSqlClients",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lsSqlMyFreeDb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "Id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "nombre",
+				"type": "nvarchar"
+			},
+			{
+				"name": "apellido",
+				"type": "nvarchar"
+			},
+			{
+				"name": "email",
+				"type": "nvarchar"
+			},
+			{
+				"name": "pais",
+				"type": "nvarchar"
+			},
+			{
+				"name": "fecha_registro",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "clients"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
