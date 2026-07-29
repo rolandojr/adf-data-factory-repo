@@ -1,0 +1,111 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "azdafaeu02"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"lsAkvSensitiveData_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://sensitive-data.vault.azure.net/"
+		},
+		"lsSqlMyFreeDb_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "myfreesqldbservery.database.windows.net"
+		},
+		"lsSqlMyFreeDb_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "myFreeDB"
+		},
+		"lsSqlMyFreeDb_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "rolando"
+		},
+		"tg_on_csv_uploaded_properties_plProcessEvents_parameters_FileName": {
+			"type": "string",
+			"defaultValue": "@triggerBody().fileName"
+		},
+		"tg_on_csv_uploaded_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/b6d1efbe-75d0-48d0-bfbc-6012fa4345fe/resourceGroups/azfunction/providers/Microsoft.Storage/storageAccounts/azfunction81ca"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "azdafaeu02_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"lsAkvSensitiveData_properties_typeProperties_baseUrl": {
+						"value": "[parameters('lsAkvSensitiveData_properties_typeProperties_baseUrl')]"
+					},
+					"lsSqlMyFreeDb_properties_typeProperties_server": {
+						"value": "[parameters('lsSqlMyFreeDb_properties_typeProperties_server')]"
+					},
+					"lsSqlMyFreeDb_properties_typeProperties_database": {
+						"value": "[parameters('lsSqlMyFreeDb_properties_typeProperties_database')]"
+					},
+					"lsSqlMyFreeDb_properties_typeProperties_userName": {
+						"value": "[parameters('lsSqlMyFreeDb_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "azdafaeu02_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"tg_on_csv_uploaded_properties_plProcessEvents_parameters_FileName": {
+						"value": "[parameters('tg_on_csv_uploaded_properties_plProcessEvents_parameters_FileName')]"
+					},
+					"tg_on_csv_uploaded_properties_typeProperties_scope": {
+						"value": "[parameters('tg_on_csv_uploaded_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'azdafaeu02_ArmTemplate_0')]"
+			]
+		}
+	]
+}

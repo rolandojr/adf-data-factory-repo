@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "azdafaeu02"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"lsAkvSensitiveData_properties_typeProperties_baseUrl": {
+			"value": "https://sensitive-data.vault.azure.net/"
+		},
+		"lsSqlMyFreeDb_properties_typeProperties_server": {
+			"value": "myfreesqldbservery.database.windows.net"
+		},
+		"lsSqlMyFreeDb_properties_typeProperties_database": {
+			"value": "myFreeDB"
+		},
+		"lsSqlMyFreeDb_properties_typeProperties_userName": {
+			"value": "rolando"
+		},
+		"tg_on_csv_uploaded_properties_plProcessEvents_parameters_FileName": {
+			"value": "@triggerBody().fileName"
+		},
+		"tg_on_csv_uploaded_properties_typeProperties_scope": {
+			"value": "/subscriptions/b6d1efbe-75d0-48d0-bfbc-6012fa4345fe/resourceGroups/azfunction/providers/Microsoft.Storage/storageAccounts/azfunction81ca"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
